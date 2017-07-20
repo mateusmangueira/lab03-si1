@@ -1,0 +1,137 @@
+<html ng-app="TV Show Organizer">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organizador de Séries</title>
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="js/Controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/tema.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body background="icons/background.png" class="center-block container text-center" ng-controller="Controller">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">{{app}}</a>
+            <a class="navbar-btn btn btn" href="#" onclick="location.href = 'https://github.com/mateusmangueira/lab02-si1';">Meu GitHub.com</a>
+        </div>
+    </div>
+</nav>
+
+<input class="form-control" type="text" ng-model="nome" name="nome" placeholder="Digite o nome da série que deseja: "/>
+<button class="btn btn-success btn-xs button" ng-click="pesquisarSerie(nome)" ng-disabled="nome.length == 0">Pesquisar Série</button>
+
+<p> </p>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Pesquisa:</a>
+        </div>
+    </div>
+    <table class="table">
+        <h1 ng-if="searched()" class="naoencontrou">Desculpe, série não encontrada.</h1>
+        <tr ng-repeat="serie in seriesSearch">
+            <td>{{serie.Title}}</td>
+            <td><img ng-src="{{serie.Poster !== 'N/A' ? serie.Poster:'http://2.bp.blogspot.com/-Gbn3dT1R9Yo/VPXSJ8lih_I/AAAAAAAALDQ/24wFWdfFvu4/s1600/sorry-image-not-available.png'}}" height="350" width="350"></td>
+            <td><button type="submit"  class="btn-success" ng-click="adicionarSerie(serie)">Adicionar ao Perfil</button></td>
+            <td><button type="submit"  class="btn-info" ng-click="adicionarSerieAoWatchlist(serie)">Adicionar ao WatchList</button></td>
+        </tr>
+    </table>
+</nav>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Minhas Séries:</a>
+        </div>
+    </div>
+    <table ng-show="series.length > 0" class="table">
+        <tr ng-repeat="serie in series">
+            <td> </td>
+            <td>{{serie.Title}}</td>
+            <td><img ng-src="{{serie.Poster !== 'N/A' ? serie.Poster:'http://2.bp.blogspot.com/-Gbn3dT1R9Yo/VPXSJ8lih_I/AAAAAAAALDQ/24wFWdfFvu4/s1600/sorry-image-not-available.png'}}" height="350" width="350"></td>
+            <td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#informacoesDaSerie{{$index}}">Informações</button></td>
+            <td><button type="submit"  class="btn-danger" ng-click="apagarSerie(serie)">Remover do Perfil</button></td>
+            <td>
+                <div id="informacoesDaSerie{{$index}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title alinhacentro">{{serie.Title}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-70 alinhacentro">
+                                        <img id="imagesize" src="{{serie.Poster !== 'N/A' ? serie.Poster:'http://2.bp.blogspot.com/-Gbn3dT1R9Yo/VPXSJ8lih_I/AAAAAAAALDQ/24wFWdfFvu4/s1600/sorry-image-not-available.png'}}" alt="Lights">
+                                    </div>
+                                    <div class="col-md-70 alinhacentro">
+                                        <p>{{serie.Plot}}</p>
+                                    </div>
+                                    <div class="col-md-70 info alinhacentro">
+                                        <p><b>Média iMDB:</b> {{serie.imdbRating}}</p>
+                                        <p><b>Classificação Etária:</b> {{serie.Rated}}</p>
+                                        <div class="input-group input alinhacentro">
+                                            <input ng-model="nota" type="text" class="form-control" placeholder="Exemplo: 9.8">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-basic" type="submit" ng-click="avaliarSerie(serie,nota)">
+                                                    <i>OK</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p><b>Sua Avaliação:</b> {{serie.avaliacaoUsuario}}</p>
+                                        <div class="input-group input alinhacentro">
+                                            <input ng-model="lastep" type="text" class="form-control" placeholder="Exemplo: S3E10">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-basic" type="submit" ng-click="alterarUltimoEpisodio(serie,lastep)">
+                                                    <i>OK</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p><b>Último Episódio Assistido:</b> {{serie.ultimoEpisodio}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</nav>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WatchList:</a>
+        </div>
+    </div>
+    <div id="Watchlist">
+        <table ng-show="watchlist.length > 0" class="table">
+            <tr ng-repeat="serie in watchlist">
+                <td> </td>
+                <td>{{serie.Title}}</td>
+                <td><img ng-src="{{serie.Poster !== 'N/A' ? serie.Poster:'http://2.bp.blogspot.com/-Gbn3dT1R9Yo/VPXSJ8lih_I/AAAAAAAALDQ/24wFWdfFvu4/s1600/sorry-image-not-available.png'}}" height="350" width="350"></td>
+                <td><button type="submit"  class="btn-success" ng-click="transferirSerie(serie)">Adicionar ao Perfil</button></td>
+                <td><button type="submit"  class="btn-danger" ng-click="apagarSerieDoWatchlist(serie)">Remover do WatchList</button></td>
+            </tr>
+        </table>
+    </div>
+</nav>
+
+<footer">
+    Copyright © 2017 - Mateus Mangueira
+</footer>
+</body>
+</html>

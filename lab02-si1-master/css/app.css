@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+
+
+h3 {
+    color: #ffff00;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 170%;
+}
+
+h4 {
+    font-family: "Comic Sans MS";
+    text-align: center;
+    font-size: 100%;
+    color: #ffffff;
+}
+
+h5 {
+    margin-top: 4px;
+    margin-bottom: auto;
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.form-control {
+    margin-bottom: 5px;
+    font-size: 100%;
+}
+.completa {
+    color: #000000;
+    background-color: #f7f7f7;
+}
+
+.negrito {
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+.table {
+    margin-top: 30px;
+    font-size: 100%;
+}
+
+th {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+td {
+    font-family: "Comic Sans MS";
+    font-style: italic;
+}
+
+.form-control{
+
+    margin-bottom: 5px;
+}
+
+.grow:hover
+{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.top{
+    color: white;
+    font-family: 'Sofia', cursive;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Arvo', serif;
+}
+
+.logo{
+    color: white !important;
+
+}
+.title{
+    color: white;
+
+}
+.estreia{
+
+    font-family: Sofia, cursive;
+    font-family: Indie Flower, cursive;
+    color: white;
+    text-align: center
+
+}
+.search{
+
+    width: 5px;
+    height: 5px;
+}
+
+.buttonT{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    opacity: 0.5;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    font-size: 30px;
+    color:#EFF2FB;
+    opacity: 1;
+}
+
+.container{
+    margin-top: 3px;
+}
+
+.titulo{
+    font-size: 16px;
+}
+
+.searchButton{
+    float: right;
+
+}
+
+.searchBox{
+    margin-right: 4px;
+}
+
+.color:hover{
+    background:#53a7ea;
+}
+
+.applogo{
+    padding-right: 10px;
+}
+
+.searchicon{
+    width: 18px;
+}
+
+.ptsans{
+    font-family: 'PT Sans', sans-serif;
+}
+
+.corpo{
+    background-color: #3B3B3B;
+}
+
+#thumbsize{
+    width: 245px;
+    height: 368px;
+    text-align: center;
+
+}
+
+#imagesize{
+    width: 235px;
+    height: 358px;
+
+}
+
+#infoicon{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.naoencontrou{
+    text-align: center;
+    color: black;
+}
+
+.sinopse{
+    margin-left: -40px;
+}
+
+.alinhacentro{
+    text-align: center;
+}
+
+.info{
+    margin-left: -40px;
+}
+
+.infoicons{
+    float: left;
+    margin-right: 5px;
+}
+
+.input{
+    margin-top: -8px;
+    width: 35%;
+    float: right;
+}
+
+.hoverzoom {
+    position: relative;
+    width: 350px;
+    overflow: hidden;
+}
+
+.hoverzoom .retina{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    text-align: center;
+    padding: 30px;
+    -webkit-transition:	 all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+    -moz-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+    -ms-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+    -o-transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+    transition: all .8s cubic-bezier(.190, 1.000, .220, 1.000);
+}
+
+.hoverzoom:hover .retina {
+    opacity: 1;
+    box-shadow: inset 0 0 100px 50px rgba(0,0,0,0.5);
+}
+
+.hoverzoom .retina p {
+    color: #fff;
+}
+
+.modal > div {
+    width: 600px;
+    position: relative;
+    margin: 10% auto;
+    padding: 15px 20px;
+    background: #fff;
+}
+
+.hoverzoom .retina a {
+    display: block;
+    width: 150px;
+    background: #6fc5e9;
+    border: 1px solid #59afd4;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 16px auto 0;
+}

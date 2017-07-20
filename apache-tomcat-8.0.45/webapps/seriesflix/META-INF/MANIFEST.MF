@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: seriesflix
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: mateusmangueira
+Implementation-Vendor-Id: com.si1.labs
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/seriesflix/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
