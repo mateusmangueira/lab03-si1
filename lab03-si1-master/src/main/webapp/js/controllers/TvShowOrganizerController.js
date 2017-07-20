@@ -1,6 +1,6 @@
 angular.module("TvShowOrganizer").controller("TvShowOrganizerController", function($scope, $http) {
   $scope.app = "TvShowOrganizer";
-
+  
   $scope.input;
 
   $scope.busca = [];
@@ -14,6 +14,8 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
   $scope.logado = false;
 
   $scope.usuario;
+
+  // Métodos
 
   $scope.enviarPesquisa = function () {
     if($scope.input === undefined || $scope.input.length === 0) {
@@ -117,7 +119,7 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
 
   $scope.adicionarSerie = function(serie) {
     if($scope.logado === false) {
-      alert("Para usar o Tv Show Organizer, você precisa estar logado.");
+      alert("Para usar o Organizador de Séries, você precisa estar logado.");
       return;
     }
     if ($scope.contains($scope.profile, serie)) {
@@ -137,13 +139,13 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
 
   $scope.adicionarSerieAoWatchlist = function (serie) {
     if($scope.logado === false) {
-      alert("Para usar o Tv Show Organizer, você precisa estar logado.");
+      alert("Para usar o Organizador de Séries, você precisa estar logado.");
       return;
     }
     if ($scope.contains($scope.watchlist, serie)) {
-      alert('"' + serie.Title + '" já existe na sua WatchList.')
+      alert('"' + serie.Title + '" já existe na sua Watchlist.')
     } else if ($scope.contains($scope.profile, serie)) {
-      alert('"' + serie.Title + '" já existe no seu Perfil.')
+      alert('"' + serie.Title + '" já existe no seu perfil.')
     } else {
       $scope.watchlist.push(serie);
       $scope.adicionarAoBancoDeDados(serie, false);
@@ -160,7 +162,7 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
   };
 
   $scope.apagarSerie = function (serie) {
-    if(confirm('Tem certeza que deseja remover a série "' + serie.Title + '" do seu Perfil?') === true) {
+    if(confirm('Tem certeza que deseja remover a série "' + serie.Title + '" do seu perfil?') === true) {
       var index = $scope.profile.indexOf(serie);
       var id = $scope.pegarIDPeloImdbID(serie);
       $scope.apagarDoBancoDeDados(id);
@@ -184,23 +186,25 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
   };
 
   $scope.apagarSerieDoWatchlist = function (serie) {
-    if (confirm('Tem certeza que deseja remover a série "' + serie.Title + '" da sua WatchList?') === true) {
+    if (confirm('Tem certeza que deseja remover a série "' + serie.Title + '" da sua Watchlist?') === true) {
       $scope.transferirSerie(serie);
     }
   };
 
-    $scope.avaliarSerie = function (serie, nota) {
-        if (nota < 10 || nota > 0) {
-            serie.avaliacao = nota;
-        }
-        else {
-            alert("Insira uma nota de 0 à 10.");
-        }
-    };
+  $scope.avaliarSerie = function (serie, nota) {
+	serie.avaliacao = nota;
+	var serieAtualizada = $scope.pegarSeriePeloImdbID(serie);
+	console.log(serieAtualizada);
+	serieAtualizada.avaliacao = nota;
+    $scope.atualizarSerie(serieAtualizada);
+  };
 
-    $scope.alterarUltimoEpisodio = function (serie, episodio) {
-        serie.ultimoEpisodio = episodio;
-    }
+  $scope.alterarUltimoEpisodio = function (serie, episodio) {
+	serie.ultimoEpisodio = episodio;
+    var serieAtualizada = $scope.pegarSeriePeloImdbID(serie);
+    serieAtualizada.ultimoEpisodio = episodio;
+    $scope.atualizarSerie(serieAtualizada);
+  };
 
   $scope.atualizarSerie = function(serie) {
     var promise = $http.put("/serie/" + serie.id, serie).then(function(response) {
