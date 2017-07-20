@@ -119,7 +119,7 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
 
   $scope.adicionarSerie = function(serie) {
     if($scope.logado === false) {
-      alert("Para usar o Organizador de Séries, você precisa estar logado.");
+      alert("Para usar o Tv Show Organizer, você precisa estar logado.");
       return;
     }
     if ($scope.contains($scope.profile, serie)) {
@@ -139,7 +139,7 @@ angular.module("TvShowOrganizer").controller("TvShowOrganizerController", functi
 
   $scope.adicionarSerieAoWatchlist = function (serie) {
     if($scope.logado === false) {
-      alert("Para usar o Organizador de Séries, você precisa estar logado.");
+      alert("Para usar o Tv Show Organizer, você precisa estar logado.");
       return;
     }
     if ($scope.contains($scope.watchlist, serie)) {
